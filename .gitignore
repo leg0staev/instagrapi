@@ -142,3 +142,8 @@ dmypy.json
 # VSCode
 .vscode
 ig_settings.json
+
+settings.py
+session.json
+.gitignore
+followers.txt

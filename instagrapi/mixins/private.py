@@ -521,8 +521,11 @@ class PrivateRequestMixin:
         )
         try:
             if self.delay_range:
-                random_delay(delay_range=self.delay_range)
+                sleeping_time = random.uniform(self.delay_range[0], self.delay_range[1])
+                self.logger.info('sleep %s sec', sleeping_time)
+                time.sleep(sleeping_time)
             self.private_requests_count += 1
+            self.logger.info('делаю запрос № %d ', self.private_requests_count)
             self._send_private_request(endpoint, **kwargs)
         except ClientRequestTimeout:
             self.logger.info(

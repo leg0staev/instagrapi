@@ -46,6 +46,18 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 # Used as fallback logger if another is not provided.
 DEFAULT_LOGGER = logging.getLogger("instagrapi")
+DEFAULT_LOGGER.setLevel(logging.DEBUG)  # Установка уровня на DEBUG
+
+# Создание обработчика для вывода в консоль
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.DEBUG)  # Установка уровня для обработчика
+
+# Создание форматтера для форматирования сообщений
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+console_handler.setFormatter(formatter)
+
+# Добавление обработчика к логгеру
+DEFAULT_LOGGER.addHandler(console_handler)
 
 
 class Client(
